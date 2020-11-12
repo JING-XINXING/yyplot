@@ -8,7 +8,7 @@
 ##' @return data.frame
 ##' @author guangchuang yu
 ##' @importFrom plyr ldply
-##' @importFrom dplyr rename_
+##' @importFrom dplyr rename_, rename()
 ##' @export
 ##' @examples
 ##' \dontrun{
@@ -25,7 +25,7 @@ pubmed_trend <- function(searchTerm, year, verbose=TRUE) {
     }
 
     bg <- pubmed_trend.internal("", year, verbose = FALSE)
-    bg <- rename_(bg, ALL=~number)
+    bg <- rename(bg, ALL=~number)
     res.df <- merge(res.df, bg, by="year", all.x=TRUE)
 
     class(res.df) <- c("pubmedTrend", "data.frame")
